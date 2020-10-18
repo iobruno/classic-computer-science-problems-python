@@ -39,4 +39,9 @@ class ZookeeperConstraint:
             self.cage_number: int = cage
 
         def is_satisfied_with(self, assignment: Dict[str, int]) -> bool:
-            pass
+            """
+            Assignment carries the whole configuration of which animals are assigned to which cage
+            Meaning: self.animal must have been assigned to specific self.cage
+            for this Constraint to be accepted, otherwise Reject
+            """
+            return assignment[self.animal] == self.cage_number

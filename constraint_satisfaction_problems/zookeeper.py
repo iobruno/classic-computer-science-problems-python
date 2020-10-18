@@ -21,3 +21,12 @@ class ZookeeperConstraint:
 
         def is_satisfied_with(self, assignment: Dict[str, str]) -> bool:
             pass
+
+    class MustBeInCageID(Constraint[str, int]):
+        def __init__(self, animal: str, cage: int):
+            super().__init__([animal])
+            self.animal: str = animal
+            self.cage_number: int = cage
+
+        def is_satisfied_with(self, assignment: Dict[str, int]) -> bool:
+            pass

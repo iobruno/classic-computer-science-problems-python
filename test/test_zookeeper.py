@@ -30,21 +30,19 @@ def zoo_organization_problem() -> Optional[Dict[str, int]]:
         .add_variable(var="Wild Boar", domain=domain)
 
     problem \
-        .add_constraint(ZookeeperConstraint.Reject("Lion", "Tiger")) \
+        .add_constraint(ZookeeperConstraint.Rejects("Lion", "Tiger")) \
         .add_constraint(ZookeeperConstraint.MustBeTogetherWith("Meerkat", "Wild Boar")) \
-        .add_constraint(ZookeeperConstraint.Reject("Hyena", "Lion")) \
-        .add_constraint(ZookeeperConstraint.Reject("Hyena", "Deer")) \
-        .add_constraint(ZookeeperConstraint.Reject("Hyena", "Peacock")) \
-        .add_constraint(ZookeeperConstraint.Reject("Hyena", "Meerkat")) \
-        .add_constraint(ZookeeperConstraint.Reject("Hyena", "Wild Boar")) \
-        .add_constraint(ZookeeperConstraint.Reject("Tiger", "Meerkat")) \
-        .add_constraint(ZookeeperConstraint.Reject("Tiger", "Wild Boar")) \
-        .add_constraint(ZookeeperConstraint.Reject("Tiger", "Peacock")) \
-        .add_constraint(ZookeeperConstraint.Reject("Deer", "Lion")) \
-        .add_constraint(ZookeeperConstraint.Reject("Deer", "Tiger")) \
-        .add_constraint(ZookeeperConstraint.MustNotBeInAdjacentCageWith("Deer", "Lion")) \
-        .add_constraint(ZookeeperConstraint.MustNotBeInAdjacentCageWith("Deer", "Tiger")) \
-        .add_constraint(ZookeeperConstraint.Reject("Peacock", "Lion")) \
+        .add_constraint(ZookeeperConstraint.Rejects("Hyena", "Lion")) \
+        .add_constraint(ZookeeperConstraint.Rejects("Hyena", "Deer")) \
+        .add_constraint(ZookeeperConstraint.Rejects("Hyena", "Peacock")) \
+        .add_constraint(ZookeeperConstraint.Rejects("Hyena", "Meerkat")) \
+        .add_constraint(ZookeeperConstraint.Rejects("Hyena", "Wild Boar")) \
+        .add_constraint(ZookeeperConstraint.Rejects("Tiger", "Meerkat")) \
+        .add_constraint(ZookeeperConstraint.Rejects("Tiger", "Wild Boar")) \
+        .add_constraint(ZookeeperConstraint.Rejects("Tiger", "Peacock")) \
+        .add_constraint(ZookeeperConstraint.RejectsSameOrAdjacent("Deer", "Lion")) \
+        .add_constraint(ZookeeperConstraint.RejectsSameOrAdjacent("Deer", "Tiger")) \
+        .add_constraint(ZookeeperConstraint.Rejects("Peacock", "Lion")) \
         .add_constraint(ZookeeperConstraint.MustBeInCageID("Lion", 1))
 
     return problem.backtracking_search()
